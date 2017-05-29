@@ -12,12 +12,25 @@ class Player
 
   def collect_treasure
     @gold_coins += 1
+    if @gold_coins % 10 == 0
+      level_up
+    end
+  end
+
+  def do_battle
+    @health_points -= 1
+    if @health_points < 1
+      @lives -+ 1 && @health_points == 10
+    if @lives == 0
+      restart
+      end
+    end
+  end
+
+  def restart
+    @gold_coins == 0
+    @health_points == 10
+    @lives == 5
   end
 
 end
-
-Your class should have an instance method called
-collect_treasure that increases gold_coins by one.
- If gold_coins is a multiple of ten (eg, 10, 20, 30,
-  and so on) then the collect_treasure method should
-  run the level_up method.
